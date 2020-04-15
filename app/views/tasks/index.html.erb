@@ -1,0 +1,17 @@
+
+
+
+<div class="main posts-index">
+  <p><%= link_to "タスク新規作成", new_user_task_path %> </p>
+
+  
+  <div class="container">
+    <% @tasks.each do |task| %>
+      <div class="posts-index-item">
+        <%= task.name %>
+        <%= task.user_id %>
+        <%= link_to task.name, user_task_path(@user, task.id) %>
+      </div>
+    <% end %>
+  </div>
+</div>

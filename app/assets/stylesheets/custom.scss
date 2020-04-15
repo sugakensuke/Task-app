@@ -23,6 +23,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+#header-color {
+  background-color: teal;
+}
+
 /* タイポグラフィ */
 
 h1, h2, h3, h4, h5, h6 {
@@ -57,16 +61,28 @@ p {
   margin-right: 10px;
   font-size: 1.7em;
   color: #fff;
-  text-transform: uppercase;
+  font-style: italic;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
 }
 
 #logo:hover {
-  color: #fff;
+  color: silver;
   text-decoration: none;
 }
+
+#logo2 {
+    color: #fff;
+    font-weight:bold;
+    background-color:teal;
+}
+
+#logo2:hover {
+  color: silver;
+  text-decoration: none;
+}
+
 
 /* デバッグウインドウ */
 
