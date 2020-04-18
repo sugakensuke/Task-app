@@ -3,6 +3,12 @@
     <div class="posts-show-item">
       <p>投稿詳細ページ：投稿IDは<%= @task_id %></p>　<!--不要-->
       <p><%= @task.name %></p>
+      <div class="post-menus">
+        <%= link_to "編集", edit_user_task_path, class: "post_edit_button" %>
+   <!--<%= link_to "編集", edit_user_task_path(@task.id), class: "post_edit_button" %>
+                                         　　　  """""""""　←ここあると編集ボタンでユーザーIDも切り替わっちゃうｗなぜに-->
+        <%= link_to "削除", user_task_path, method: :delete, class: "post_delete_button" %>
+            </div>
     </div>
   </div>
 </div>
