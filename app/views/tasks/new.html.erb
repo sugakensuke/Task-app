@@ -4,7 +4,10 @@
     <%= form_tag user_tasks_path do %>
       <div class="form">
         <div class="form-body">
-          <textarea name="name"></textarea>
+          <% @task.errors.full_messages.each do |message| %>
+            <div class="form-error"><%= message %></div>
+          <% end %>
+          <textarea name="name"><%= @task.name %></textarea>
           <input type="submit" value="投稿">
         </div>
       </div>

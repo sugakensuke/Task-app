@@ -15,6 +15,13 @@
       <% flash.each do |message_type, msg| %>
         <div class="alert alert-<%= message_type %>"><%= msg %></div>
       <% end %>
+      <!--↑↑これもフラッシュの時に出る用の記述ぽい-->
+      
+      <% if flash[:notice] %>
+        <div class ="flash"><%= flash[:notice] %></div>
+      <% end %>
+      
+      
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>

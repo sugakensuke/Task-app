@@ -1,12 +1,17 @@
 class TasksController < ApplicationController
   
   def new
+    @task = Task.new
   end
   
   def create
     @task = Task.new(name: params[:name], user_id: params[:user_id])
-    @task.save
-    redirect_to user_tasks_url
+    if @task.save
+      flash[:notice] = "投稿しました！"
+      redirect_to user_tasks_url
+    else
+      render :new
+    end
   end
   
   def index
@@ -27,19 +32,17 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.name = params[:name]
     if @task.save
+      flash[:notice] = "投稿を編集しました。"
       redirect_to user_tasks_url
     else
       render :edit
     end
   end
 
-  
-
-
-  
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+    flash[:notice] = "投稿を削除しました。"
     redirect_to user_tasks_url
   end
   
