@@ -1,19 +1,39 @@
-<div class="main posts-show">
-  <div class="container">
-    <div class="posts-show-item">
-      <p>投稿詳細ページ：投稿IDは<%= @task_id %></p>　<!--不要-->
-      <p><%= @task.id %></p>
-      <p><%= @task.name %></p>
-      <p><%= @task.description %></p>
-      <p><%= @task.created_at %></p>
-      <p><%= @task.updated_at %></p>
-      
-      <div class="post-menus">
-        <%= link_to "編集", edit_user_task_path, class: "post_edit_button" %>
-   <!--<%= link_to "編集", edit_user_task_path(@task.id), class: "post_edit_button" %>
-                                         　　　  """""""""　←ここあると編集ボタンでユーザーIDも切り替わっちゃうｗなぜに-->
-        <%= link_to "削除", user_task_path, method: :delete, class: "post_delete_button" %>
-            </div>
+
+<% provide(:title, @user.name) %>
+
+<h1>タスク詳細</h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table-bordered" id="table-task">
+      <tbody>
+        <tr>
+          <th class="active col-md-2"><%= Task.human_attribute_name :id %></th>
+          <td class="col-md-10"><%= @task.id %></td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :name %></th>
+          <td><%= @task.name %></td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :description %></th>
+          <td><%= @task.description %></td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :created_at %></th>
+          <td><%= l(@task.created_at, format: :long) %></td>
+        </tr>
+        <tr>
+          <th class="active"><%= Task.human_attribute_name :updated_at %></th>
+          <td><%= l(@task.updated_at, format: :long) %></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div>
+      <%= link_to "編集", edit_user_task_path(@user, @task), class: "btn btn-lg btn-success" %>
+      <%= link_to "削除", user_task_path(@user, @task), method: :delete,
+      data: { confirm: "「#{@task.name}」を削除します。よろしいですか？" }, class: "btn btn-lg btn-danger" %>
     </div>
-  </div>
+  </div>    
 </div>
