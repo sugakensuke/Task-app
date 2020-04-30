@@ -28,11 +28,11 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
   
+
   def update
     @task = Task.find(params[:id])
-    @task.name = params[:name]
-    if @task.save
-      flash[:notice] = "投稿を編集しました。"
+    if @task.update_attributes(task_params)
+      flash[:success] = "タスクを更新しました。"
       redirect_to user_tasks_url
     else
       render :edit
@@ -45,5 +45,11 @@ class TasksController < ApplicationController
     flash[:notice] = "投稿を削除しました。"
     redirect_to user_tasks_url
   end
+  
+  private
+
+    def task_params
+      params.require(:task).permit(:name, :description)
+    end
   
 end

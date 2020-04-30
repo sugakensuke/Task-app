@@ -2,7 +2,12 @@
   <div class="container">
     <div class="posts-show-item">
       <p>投稿詳細ページ：投稿IDは<%= @task_id %></p>　<!--不要-->
+      <p><%= @task.id %></p>
       <p><%= @task.name %></p>
+      <p><%= @task.description %></p>
+      <p><%= @task.created_at %></p>
+      <p><%= @task.updated_at %></p>
+      
       <div class="post-menus">
         <%= link_to "編集", edit_user_task_path, class: "post_edit_button" %>
    <!--<%= link_to "編集", edit_user_task_path(@task.id), class: "post_edit_button" %>
