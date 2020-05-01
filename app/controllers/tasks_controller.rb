@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_user
-    
+  before_action :logged_in_user
+  before_action :correct_user
+  
   def new
     @task = Task.new
   end
@@ -43,7 +45,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    flash[:notice] = "投稿を削除しました。"
+    flash[:success] = "投稿を削除しました。"
     redirect_to user_tasks_url
   end
   
