@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   
   def new
+    if logged_in? #ログイン中、/loginにアクセスしたときにこのアクションが実行される
+      flash[:info] = 'すでにログインしています。'
+      redirect_to current_user
+    end
   end
   
   def create

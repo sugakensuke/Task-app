@@ -1,7 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_user
+  before_action :set_task, only: %i(show edit update destroy)
   before_action :logged_in_user
   before_action :correct_user
+  
+  def index
+    @user = User.find(params[:user_id]) 
+    @tasks = @user.tasks.order(created_at: :desc)
+  end
+  
+  def show
+    @task_id = params[:id] #不要
+    @task = Task.find(params[:id])
+  end
   
   def new
     @task = Task.new
@@ -15,16 +26,6 @@ class TasksController < ApplicationController
     else
       render :new
     end
-  end
-  
-  def index
-    @tasks = Task.all
-    @user = User.find(params[:user_id]) 
-  end
-  
-  def show
-    @task_id = params[:id] #不要
-    @task = Task.find(params[:id])
   end
   
   def edit
@@ -57,6 +58,13 @@ class TasksController < ApplicationController
     
     def set_user
       @user = User.find(params[:user_id])
+    end
+    
+    def set_task
+      unless @task = @user.tasks.find_by(id: params[:id])
+        flash[:danger] = "権限がありません。"
+        redirect_to user_tasks_url @user
+      end
     end
   
 end

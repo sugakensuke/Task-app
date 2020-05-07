@@ -83,6 +83,24 @@ p {
   text-decoration: none;
 }
 
+.dropdown-header {
+  background-color: rgba(200, 200, 200, 0.5);
+  font-weight: bold;
+}
+
+.btn-form {
+  margin-top: 10px;
+}
+
+#table-user th {
+    text-align: center;
+}
+
+#task-name {
+    font-size: 1.8rem;
+}
+
+
 
 /* デバッグウインドウ */
 
